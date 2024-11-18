@@ -4,3 +4,5 @@ Vagrantfile~
 *.un~
 .venv
 hosts~
+*.yml~
+*.swp
