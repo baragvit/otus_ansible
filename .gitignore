@@ -1,3 +1,6 @@
 .Vagrantfile.un~
 Vagrantfile~
 .vagrant/
+*.un~
+.venv
+hosts~
