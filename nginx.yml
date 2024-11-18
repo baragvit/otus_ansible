@@ -2,14 +2,35 @@
 - name: NGINX | Install and configure NGINX
   hosts: nginx
   become: true
+  vars:
+    nginx_listen_port: 8080
 
   tasks:
-    - name: update
-      apt:
-        update_cache: true 
-    
     - name: NGINX | Install NGINX
-      apt:
+      ansible.builtin.apt:
+        update_cache: true
         name: nginx
-        state: latest
+      notify:
+        - Restart nginx
+
+    - name: NGINX | Create NGINX config file from template
+      ansible.builtin.template:
+        src: template/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        mode: '0600'
+      notify:
+        - Reload nginx
+      tags:
+        - nginx-configurations
+
+  handlers:
+    - name: Restart nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted
+        enabled: true
+    - name: Reload nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: reloaded
 ...
