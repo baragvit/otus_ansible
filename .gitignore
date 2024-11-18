@@ -6,3 +6,4 @@ Vagrantfile~
 hosts~
 *.yml~
 *.swp
+*.md~
