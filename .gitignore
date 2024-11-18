@@ -1,0 +1,9 @@
+.Vagrantfile.un~
+Vagrantfile~
+.vagrant/
+*.un~
+.venv
+hosts~
+*.yml~
+*.swp
+*.md~
